@@ -1,0 +1,43 @@
+name: John Doe
+title: Full Stack Developer
+
+contact:
+  email: john.doe@example.com
+  LinkedIn: https://linkedin.com/in/johndoe
+  GitHub: https://github.com/johndoe
+
+profile: |
+  Experienced developer with a passion for building scalable web applications.
+  Specialized in JavaScript, Python, and cloud technologies.
+
+education:
+  - institution: MIT
+    duration: 2015-2019
+    achievements:
+      - Bachelor of Science in Computer Science
+      - 'GPA: 3.8/4.0'
+
+experience:
+  - title: Senior Full Stack Developer
+    company: Tech Solutions
+    duration: 2021 - Present
+    responsibilities:
+      - Design and implementation of web applications
+      - Mentoring junior developers
+      - System performance optimization
+    tech_stack: React, Node.js, PostgreSQL, AWS
+
+  - title: Frontend Developer
+    company: StartUp XYZ
+    duration: 2019 - 2021
+    responsibilities:
+      - Building user interfaces with React
+      - REST API integration
+      - Writing unit tests
+    tech_stack: React, TypeScript, Jest, Docker
+
+skills:
+  Frontend: React, Vue.js, TypeScript, HTML5, CSS3
+  Backend: Node.js, Python, Django, Express
+  Databases: PostgreSQL, MongoDB, Redis
+  DevOps: Docker, Kubernetes, CI/CD, AWS

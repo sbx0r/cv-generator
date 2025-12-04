@@ -1,0 +1,20 @@
+[project]
+name = "cv-generator"
+version = "1.0.0"
+description = "CV Generator with Jinja2 templates"
+dependencies = [
+    "jinja2>=3.1.0",
+    "pdfkit>=1.0.0",
+    "pyyaml>=6.0.0"
+]
+requires-python = ">=3.8"
+
+[tool.uv]
+dev-dependencies = []
+
+[tool.hatch.build.targets.wheel]
+only-include = ["*.py", "*.html", "*.css"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

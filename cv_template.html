@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} - Resume</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <header class="header">
+        <div class="header-main">
+            <h1>{{ name }}</h1>
+            <p class="job-title">{{ title }}</p>
+        </div>
+        <div class="header-contact">
+            <div class="contact-details">
+                <ul>
+                    {% if contact.email %}
+                    <li><a href="mailto:{{ contact.email }}"><i class="fas fa-envelope"></i>{{ contact.email }}</a></li>
+                    {% endif %}
+                    {% if contact.tel %}
+                    <li><a href="tel:{{ contact.tel }}"><i class="fas fa-phone"></i>{{ contact.tel }}</a></li>
+                    {% endif %}
+                    {% if contact.timezone %}
+                    <li><i class="fas fa-clock"></i>{{ contact.timezone }}</li>
+                    {% endif %}
+                    {% if contact.location %}
+                    <li><i class="fas fa-map-marker-alt"></i>{{ contact.location }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="contact-social">
+                <ul>
+                    {% if contact.LinkedIn %}
+                    <li><a href="{{ contact.LinkedIn }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i>LinkedIn</a></li>
+                    {% endif %}
+                    {% if contact.GitHub %}
+                    <li><a href="{{ contact.GitHub }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>GitHub</a></li>
+                    {% endif %}
+                    {% if contact.Twitter %}
+                    <li><a href="{{ contact.Twitter }}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i>Twitter</a></li>
+                    {% endif %}
+                    {% if contact.website %}
+                    <li><a href="{{ contact.website }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i>Website</a></li>
+                    {% endif %}
+                    {% if contact.portfolio %}
+                    <li><a href="{{ contact.portfolio }}" target="_blank" rel="noopener noreferrer"><i class="fas fa-briefcase"></i>Portfolio</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="career-profile">
+            <h2>Career Profile</h2>
+            <p>{{ profile }}</p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <ul class="job education">
+            {% for school in education %}
+                <li>
+                    <div class="education-header">
+                        <h3>{{ school.institution }}</h3>
+                        <div class="education-divider"></div>
+                        <span class="education-dates">{{ school.duration | default('') }}</span>
+                    </div>
+                    <ul>
+                    {% for achievement in school.achievements %}
+                        <li>{{ achievement }}</li>
+                    {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            {% for role in experience %}
+            <div class="job">
+                <div class="job-header">
+                    <h3>{{ role.company }} – <span class="job-title">{{ role.title }}</span></h3>
+                    <div class="job-divider"></div>
+                    <span class="dates">{{ role.duration }}</span>
+                </div>
+                <ul>
+                    {% if role.responsibilities is string %}
+                        <li>{{ role.responsibilities }}</li>
+                    {% elif role.responsibilities is iterable %}
+                        {% for responsibility in role.responsibilities %}
+                        <li>{{ responsibility }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+                {% if role.tech_stack %}
+                <p class="key-technologies">
+                    <strong>Tech Stack:</strong> {{ role.tech_stack }}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </section>
+
+        <section id="skills">
+            <h2>Skills & Proficiency</h2>
+            <ul class="skills-list">
+            {% if skills is mapping %}
+                {% for category, items in skills.items() %}
+                <li><strong>{{ category }}:</strong> {{ items if items is string else ', '.join(items) }}</li>
+                {% endfor %}
+            {% else %}
+                {% for skill in skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            {% endif %}
+            </ul>
+        </section>
+    </main>
+</div>
+</body>
+</html>
